@@ -1,0 +1,38 @@
+typedef struct node{
+    //i want to represent polynomials,data = coeficient,n = i(x**i)
+    int data;
+    struct node *next;
+    struct node *prev;
+}node;
+
+typedef struct node* head;
+
+void create(int n){
+    int data;
+    node* last;
+    node* novo;
+    //manter o track do primeiro elemnto pq o ultimo sempre vai ligar com esse
+    node* f_node;
+
+    if(n >= 1){
+        f_node = malloc(sizeof(node));
+        //printf("data for node 1: ");
+        scanf("%d", &data);
+        f_node->data = data;
+        f_node->next = NULL;
+        //previus
+        last = f_node;
+    }
+    for(int i = 2;i <= n;i++){
+        node* novo = malloc(sizeof(node));
+        scanf("%d",&data);
+        novo->data = data;
+        novo->next = NULL;
+        novo->prev = last;
+
+        //ligando o novo node ao primeiro(ultimo liga com o primeiro)
+        last = novo;
+        last->next = f_node;
+    }
+}
+
